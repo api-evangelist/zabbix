@@ -1,0 +1,54 @@
+name: Zabbix API
+description: Zabbix is an enterprise-class open source distributed monitoring solution for networks and applications
+image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+url: https://www.zabbix.com
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+apis:
+- name: Zabbix API
+  description: The Zabbix API allows you to programmatically retrieve and modify the configuration of Zabbix and provides access to historical data
+  image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://example.com/zabbix/api_jsonrpc.php
+  tags:
+  - Monitoring
+  - Infrastructure
+  - Alerting
+  - Networks
+  - Applications
+  properties:
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: OpenAPI
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: RateLimits
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/configuration
+  contact:
+  - type: Support
+    url: https://www.zabbix.com/support
+  - type: Forum
+    url: https://www.zabbix.com/forum
+  - type: Email
+    url: mailto:sales@zabbix.com
+common:
+- type: Portal
+  url: https://www.zabbix.com
+- type: Blog
+  url: https://blog.zabbix.com
+- type: GitHub
+  url: https://github.com/zabbix/zabbix
+- type: Twitter
+  url: https://twitter.com/zabbix
+- type: PrivacyPolicy
+  url: https://www.zabbix.com/privacy_policy
+- type: TermsOfService
+  url: https://www.zabbix.com/terms_of_use
+maintainers:
+- name: Zabbix LLC
+  email: sales@zabbix.com
+  url: https://www.zabbix.com
