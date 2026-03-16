@@ -1,5 +1,5 @@
 aid: zabbix
-name: Zabbix API
+name: Zabbix
 description: Zabbix is an enterprise-class open source distributed monitoring solution for networks and applications
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: >-
