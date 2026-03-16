@@ -1,10 +1,12 @@
+aid: zabbix
 name: Zabbix API
 description: Zabbix is an enterprise-class open source distributed monitoring solution for networks and applications
-image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
-url: https://www.zabbix.com
-created: '2024'
-modified: '2024'
-specificationVersion: '0.18'
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 apis:
 - name: Zabbix API
   description: The Zabbix API allows you to programmatically retrieve and modify the configuration of Zabbix and provides access to historical data
@@ -49,6 +51,5 @@ common:
 - type: TermsOfService
   url: https://www.zabbix.com/terms_of_use
 maintainers:
-- name: Zabbix LLC
-  email: sales@zabbix.com
-  url: https://www.zabbix.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
