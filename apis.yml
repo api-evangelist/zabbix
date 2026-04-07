@@ -18,25 +18,22 @@ apis:
     humanURL: https://www.zabbix.com/documentation/current/en/manual/api
     baseURL: https://example.com/zabbix/api_jsonrpc.php
     tags:
-      - Monitoring
-      - Infrastructure
       - Alerting
-      - Networks
       - Applications
+      - Infrastructure
+      - Monitoring
+      - Networks
     properties:
       - type: Documentation
         url: https://www.zabbix.com/documentation/current/en/manual/api
       - type: OpenAPI
-        url: 
-          https://www.zabbix.com/documentation/current/en/manual/api/reference
+        url: https://www.zabbix.com/documentation/current/en/manual/api/reference
       - type: Authentication
-        url: 
-          https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+        url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
       - type: GettingStarted
         url: https://www.zabbix.com/documentation/current/en/manual/quickstart
       - type: RateLimits
-        url: 
-          https://www.zabbix.com/documentation/current/en/manual/api/reference/configuration
+        url: https://www.zabbix.com/documentation/current/en/manual/api/reference/configuration
     contact:
       - type: Support
         url: https://www.zabbix.com/support
