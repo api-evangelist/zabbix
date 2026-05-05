@@ -1,0 +1,101 @@
+rules:
+  zabbix-jsonrpc-version:
+    description: All Zabbix API requests must include jsonrpc version 2.0
+    message: Request body must include jsonrpc field set to "2.0"
+    severity: error
+    given: "$.paths.*.post.requestBody.content.application/json.schema"
+    then:
+      field: properties.jsonrpc.enum
+      function: truthy
+
+  zabbix-method-documented:
+    description: Each Zabbix API path should document the JSON-RPC method it maps to
+    message: Operation must include x-rpc-method extension specifying the JSON-RPC method name
+    severity: warn
+    given: "$.paths.*.post"
+    then:
+      field: x-rpc-method
+      function: truthy
+
+  zabbix-auth-required:
+    description: All Zabbix API endpoints (except user.login) must require authentication
+    message: Operation must require ApiToken security except for user.login endpoint
+    severity: error
+    given: "$.paths[?(!@ == '/')]..post"
+    then:
+      field: security
+      function: truthy
+
+  zabbix-tags-present:
+    description: All operations must have at least one tag for grouping
+    message: Operation must include at least one tag
+    severity: warn
+    given: "$.paths.*.post"
+    then:
+      field: tags
+      function: length
+      functionOptions:
+        min: 1
+
+  zabbix-operation-id:
+    description: All operations must have a unique operationId
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths.*.post"
+    then:
+      field: operationId
+      function: truthy
+
+  zabbix-operation-summary:
+    description: All operations must have a summary
+    message: Operation must have a summary
+    severity: warn
+    given: "$.paths.*.post"
+    then:
+      field: summary
+      function: truthy
+
+  zabbix-response-200:
+    description: All operations must define a 200 response
+    message: Operation must document a 200 success response
+    severity: error
+    given: "$.paths.*.post.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  zabbix-request-body:
+    description: All Zabbix API operations must have a request body (JSON-RPC)
+    message: Operation must include a requestBody for JSON-RPC payload
+    severity: error
+    given: "$.paths.*.post"
+    then:
+      field: requestBody
+      function: truthy
+
+  zabbix-info-title:
+    description: API info must have a title
+    message: API must have an info.title
+    severity: error
+    given: "$.info"
+    then:
+      field: title
+      function: truthy
+
+  zabbix-info-version:
+    description: API info must include a version
+    message: API must have an info.version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  zabbix-servers-defined:
+    description: API must define at least one server
+    message: API must have at least one server defined
+    severity: warn
+    given: "$"
+    then:
+      field: servers
+      function: truthy

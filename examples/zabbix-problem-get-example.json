@@ -1,0 +1,39 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "method": "problem.get",
+    "params": {
+      "output": "extend",
+      "groupids": "4",
+      "recent": "true",
+      "sortfield": ["eventid"],
+      "sortorder": "DESC"
+    },
+    "id": 3
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "result": [
+      {
+        "eventid": "1001",
+        "source": "0",
+        "object": "0",
+        "objectid": "13901",
+        "clock": "1715000000",
+        "ns": "0",
+        "r_eventid": "0",
+        "r_clock": "0",
+        "r_ns": "0",
+        "correlationid": "0",
+        "userid": "0",
+        "name": "Zabbix agent on Zabbix server is unreachable for 5 minutes",
+        "acknowledged": "0",
+        "severity": "3",
+        "opdata": "",
+        "suppressed": "0",
+        "urls": []
+      }
+    ],
+    "id": 3
+  }
+}

@@ -1,0 +1,26 @@
+---
+title: "Optimized Monitoring for Hybrid Environments with ICT Solutions"
+url: "https://blog.zabbix.com/optimized-monitoring-for-hybrid-environments-with-ict-solutions/32839/"
+date: "Wed, 15 Apr 2026 09:51:51 +0000"
+author: "Michael Kammer"
+feed_url: "https://blog.zabbix.com/feed/"
+---
+<img alt="" class="webfeedsFeaturedVisual wp-post-image" height="150" src="https://blog.zabbix.com/wp-content/uploads/2026/04/hybrid_environments_880x516-150x150.png" style="display: block; margin-bottom: 5px; clear: both;" width="150" /><p><a href="https://www.ictsolutions.co.uk/">ICT Solutions</a> is a managed service provider (MSP) specializing in fully managed IT Support, cloud, cybersecurity and more. Based in Liverpool, they offer IT support across the UK.</p>
+<p><span id="more-32839"></span></p>
+<p>They work together with <a href="https://www.zabbix.com/">Zabbix</a> Premium Delivery Partner <a href="https://www.oicts.com/">Opensource ICT Solutions</a> to make sure that their customers get solid insights into their environments.</p>
+<h4 id="the-challenge">The challenge</h4>
+<p>While a lot of companies realize the potential of hybrid environments as opposed to full-cloud environments, on-premise equipment (including local network and server equipment) is still a big part of what they do. It&#8217;s relatively easy to monitor cloud equipment with Zabbix proxies in the cloud, but not every customer has what it takes to run a Zabbix proxy on site.</p>
+<p>ICT Solutions offers fully managed hybrid environments that include monitoring, so their customers have never had to worry about Zabbix proxies. As such, ICT Solutions has been running <a href="https://www.raspberrypi.com/">Raspberry PI</a> 3 devices for years. Environments grow, however, and managing tens or hundreds of Zabbix proxies is something that can take time when not properly set up.</p>
+<p>As an MSP, ICT Solutions looks after approximately 160 clients, 3,000 workstations and 1,300 network devices. These include firewalls, switches, access points, on-premise and hosted servers, network attached storage, CCTV, and door access &#8211; just to name a few. They have clients that they fully support, and clients that use them as an extension of their own IT teams.</p>
+<p>The company also has a wide variety of templates and scripts set up in Zabbix, along with many dashboards so that when issues arise, they can see straight away where an issue exists or provide a more targeted fault-finding process. They also provide their clients&#8217; IT departments with access to their Zabbix environment so they can visually display this on screens for purposes of working together.</p>
+<h4 id="the-solution">The solution</h4>
+<p>With Zabbix environments growing over the years, <a href="https://www.redhat.com/en/ansible-collaborative?intcmp=7015Y000003t7aWQAQ">Ansible</a> was deployed and <a href="https://semaphoreui.com/">Semaphore</a> was harnessed to keep things simple and manageable. This makes proxy management a breeze, as all the ICT team needs to do to deploy a proxy is have a field engineer install it and then push a button to install all the required software, which leads to the proxy being fully secured and automated into Zabbix.</p>
+<p>Unfortunately, proxy performance was dropping over time. As monitoring needs got more extensive, the Raspberry PI 3 was showing its age, which led to Raspberry PI 5 devices being ordered and installed.</p>
+<p><a href="https://blog.zabbix.com/wp-content/uploads/2026/04/1772648551714.jpeg"><img alt="" class="alignnone size-large wp-image-32850" height="795" src="https://blog.zabbix.com/wp-content/uploads/2026/04/1772648551714-824x1024.jpeg" width="640" /></a></p>
+<p>Another problem often attributed to Raspberry PI devices is their reliance on SD cards. SD cards are prone to failure when overloaded, which can become a problem as Zabbix stores its proxy database on the SD card.</p>
+<p>Fortunately, Zabbix 7.0 introduced the &#8220;ProxyBufferMode=hybrid&#8221;, which allowed the ICT Solutions team to use the RAM of the Raspberry PIs instead of SD cards for the database. They now write the history metrics to the database on the SD card only in the case of a longer outage.</p>
+<h4 id="the-results">The results</h4>
+<p>The end result is a manageable and highly scalable setup that provides ICT Solutions and their customers with valuable insights into their hybrid environments as well as improved flexibility and enhanced security.</p>
+<p><a href="https://blog.zabbix.com/wp-content/uploads/2026/04/1772648551892.jpeg"><img alt="" class="alignnone size-large wp-image-32851" height="294" src="https://blog.zabbix.com/wp-content/uploads/2026/04/1772648551892-1024x470.jpeg" width="640" /></a></p>
+<p><a href="https://blog.zabbix.com/wp-content/uploads/2026/04/1772648552048.jpeg"><img alt="" class="alignnone size-large wp-image-32852" height="274" src="https://blog.zabbix.com/wp-content/uploads/2026/04/1772648552048-1024x439.jpeg" width="640" /></a></p>
+<p>The post <a href="https://blog.zabbix.com/optimized-monitoring-for-hybrid-environments-with-ict-solutions/32839/">Optimized Monitoring for Hybrid Environments with ICT Solutions</a> appeared first on <a href="https://blog.zabbix.com">Zabbix Blog</a>.</p>

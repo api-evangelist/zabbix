@@ -1,0 +1,748 @@
+openapi: 3.1.0
+info:
+  title: Zabbix API
+  description: >-
+    The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving
+    and modifying the configuration of Zabbix and accessing historical monitoring
+    data. The API is shipped as part of the Zabbix web frontend and accessible at
+    /zabbix/api_jsonrpc.php.
+  version: '7.0'
+  contact:
+    name: Zabbix Support
+    url: https://www.zabbix.com/support
+  license:
+    name: GNU GPL v2
+    url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  x-logo:
+    url: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+servers:
+  - url: https://{host}/zabbix/api_jsonrpc.php
+    description: Zabbix Server JSON-RPC Endpoint
+    variables:
+      host:
+        description: Your Zabbix server hostname
+        default: localhost
+tags:
+  - name: Authentication
+    description: User login and session management
+  - name: Hosts
+    description: Host configuration and management
+  - name: Host Groups
+    description: Host group management
+  - name: Items
+    description: Monitoring item configuration
+  - name: Triggers
+    description: Trigger configuration and management
+  - name: Events
+    description: Event retrieval and acknowledgement
+  - name: Actions
+    description: Action configuration for alerting and automation
+  - name: Users
+    description: User account management
+  - name: Problems
+    description: Active problem retrieval
+  - name: History
+    description: Historical monitoring data
+paths:
+  /:
+    post:
+      operationId: user-login
+      summary: User Login
+      description: >-
+        Authenticates a user and creates an API session token. The token must
+        be included in all subsequent API requests.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: "2.0"
+              method: user.login
+              params:
+                username: Admin
+                password: zabbix
+              id: 1
+      responses:
+        '200':
+          description: Authentication token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcStringResponse'
+      x-rpc-method: user.login
+  /user.logout:
+    post:
+      operationId: user-logout
+      summary: User Logout
+      description: Logs out the user and invalidates the current session token.
+      tags:
+        - Authentication
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: "2.0"
+              method: user.logout
+              params: []
+              id: 2
+      responses:
+        '200':
+          description: Logout result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcBoolResponse'
+      x-rpc-method: user.logout
+  /host.get:
+    post:
+      operationId: host-get
+      summary: Get Hosts
+      description: >-
+        Returns a list of hosts matching the given parameters. Supports
+        filtering by host name, group, template, IP, and many other criteria.
+      tags:
+        - Hosts
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: "2.0"
+              method: host.get
+              params:
+                output: extend
+                groupids: "4"
+                selectInterfaces:
+                  - interfaceid
+                  - ip
+              id: 3
+      responses:
+        '200':
+          description: List of hosts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostListResponse'
+      x-rpc-method: host.get
+  /host.create:
+    post:
+      operationId: host-create
+      summary: Create Host
+      description: Creates one or more new hosts in Zabbix.
+      tags:
+        - Hosts
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: "2.0"
+              method: host.create
+              params:
+                host: newhost.example.com
+                interfaces:
+                  - type: 1
+                    main: 1
+                    useip: 1
+                    ip: 192.168.1.1
+                    dns: ""
+                    port: "10050"
+                groups:
+                  - groupid: "4"
+              id: 4
+      responses:
+        '200':
+          description: Created host IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: host.create
+  /host.update:
+    post:
+      operationId: host-update
+      summary: Update Host
+      description: Updates an existing host in Zabbix.
+      tags:
+        - Hosts
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Updated host IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: host.update
+  /host.delete:
+    post:
+      operationId: host-delete
+      summary: Delete Host
+      description: Deletes hosts from Zabbix by host ID.
+      tags:
+        - Hosts
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Deleted host IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: host.delete
+  /hostgroup.get:
+    post:
+      operationId: hostgroup-get
+      summary: Get Host Groups
+      description: Returns a list of host groups based on the given parameters.
+      tags:
+        - Host Groups
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of host groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: hostgroup.get
+  /hostgroup.create:
+    post:
+      operationId: hostgroup-create
+      summary: Create Host Group
+      description: Creates one or more new host groups in Zabbix.
+      tags:
+        - Host Groups
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Created host group IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: hostgroup.create
+  /item.get:
+    post:
+      operationId: item-get
+      summary: Get Items
+      description: Returns a list of monitoring items based on the given parameters.
+      tags:
+        - Items
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: item.get
+  /item.create:
+    post:
+      operationId: item-create
+      summary: Create Item
+      description: Creates new monitoring items on a host.
+      tags:
+        - Items
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Created item IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: item.create
+  /trigger.get:
+    post:
+      operationId: trigger-get
+      summary: Get Triggers
+      description: Returns a list of triggers based on the given parameters.
+      tags:
+        - Triggers
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of triggers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: trigger.get
+  /trigger.create:
+    post:
+      operationId: trigger-create
+      summary: Create Trigger
+      description: Creates new monitoring triggers.
+      tags:
+        - Triggers
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Created trigger IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: trigger.create
+  /event.get:
+    post:
+      operationId: event-get
+      summary: Get Events
+      description: Returns events based on the given parameters, including alerts and triggers.
+      tags:
+        - Events
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: event.get
+  /event.acknowledge:
+    post:
+      operationId: event-acknowledge
+      summary: Acknowledge Event
+      description: Acknowledges one or more events and optionally adds a message.
+      tags:
+        - Events
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Acknowledged event IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: event.acknowledge
+  /problem.get:
+    post:
+      operationId: problem-get
+      summary: Get Problems
+      description: Returns active problems currently affecting monitored hosts.
+      tags:
+        - Problems
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of active problems
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: problem.get
+  /action.get:
+    post:
+      operationId: action-get
+      summary: Get Actions
+      description: Returns action configurations from Zabbix.
+      tags:
+        - Actions
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of actions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: action.get
+  /action.create:
+    post:
+      operationId: action-create
+      summary: Create Action
+      description: Creates new actions for alerting or automated command execution.
+      tags:
+        - Actions
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Created action IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: action.create
+  /user.get:
+    post:
+      operationId: user-get
+      summary: Get Users
+      description: Returns a list of users matching the given parameters.
+      tags:
+        - Users
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: user.get
+  /user.create:
+    post:
+      operationId: user-create
+      summary: Create User
+      description: Creates new Zabbix user accounts.
+      tags:
+        - Users
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Created user IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: user.create
+  /history.get:
+    post:
+      operationId: history-get
+      summary: Get History
+      description: Returns historical monitoring data for items over a time range.
+      tags:
+        - History
+      security:
+        - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: "2.0"
+              method: history.get
+              params:
+                output: extend
+                history: 0
+                itemids: "23296"
+                sortfield: clock
+                sortorder: DESC
+                limit: 10
+              id: 5
+      responses:
+        '200':
+          description: Historical data entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: history.get
+components:
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        Zabbix API token obtained via user.login. Pass as
+        "Bearer {token}" in the Authorization header (Zabbix 5.4+),
+        or in the auth field of the JSON-RPC request body.
+  schemas:
+    JsonRpcRequest:
+      type: object
+      required:
+        - jsonrpc
+        - method
+        - id
+      properties:
+        jsonrpc:
+          type: string
+          enum: ["2.0"]
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+            - type: object
+            - type: array
+          description: Method parameters
+        id:
+          type: integer
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+    JsonRpcStringResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: string
+          description: Authentication token
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcBoolResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcArrayResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: array
+          items:
+            type: object
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcIdsResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          properties:
+            hostids:
+              type: array
+              items:
+                type: string
+            groupids:
+              type: array
+              items:
+                type: string
+            itemids:
+              type: array
+              items:
+                type: string
+            triggerids:
+              type: array
+              items:
+                type: string
+            eventids:
+              type: array
+              items:
+                type: string
+            actionids:
+              type: array
+              items:
+                type: string
+            userids:
+              type: array
+              items:
+                type: string
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    HostListResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Host'
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    Host:
+      type: object
+      properties:
+        hostid:
+          type: string
+          description: Unique host identifier
+        host:
+          type: string
+          description: Technical name of the host
+        name:
+          type: string
+          description: Visible name of the host
+        status:
+          type: integer
+          description: Host status (0=monitored, 1=unmonitored)
+        interfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/HostInterface'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/HostGroup'
+    HostInterface:
+      type: object
+      properties:
+        interfaceid:
+          type: string
+        hostid:
+          type: string
+        type:
+          type: integer
+          description: Interface type (1=agent, 2=SNMP, 3=IPMI, 4=JMX)
+        main:
+          type: integer
+          description: Whether this is the default interface (1=yes, 0=no)
+        useip:
+          type: integer
+          description: Whether to use IP (1) or DNS (0)
+        ip:
+          type: string
+        dns:
+          type: string
+        port:
+          type: string
+    HostGroup:
+      type: object
+      properties:
+        groupid:
+          type: string
+          description: Unique host group identifier
+        name:
+          type: string
+          description: Name of the host group

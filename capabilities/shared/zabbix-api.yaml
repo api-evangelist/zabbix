@@ -1,0 +1,484 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Zabbix API
+  description: >-
+    JSON-RPC 2.0 API for Zabbix monitoring platform. Provides programmatic
+    access to host management, monitoring data, alerting, and configuration
+    across the Zabbix infrastructure.
+  tags:
+    - Monitoring
+    - Infrastructure
+    - Alerting
+    - Networks
+    - Open Source
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      ZABBIX_API_TOKEN: ZABBIX_API_TOKEN
+      ZABBIX_HOST: ZABBIX_HOST
+
+capability:
+  consumes:
+    - type: http
+      namespace: zabbix
+      baseUri: "https://{{ZABBIX_HOST}}/zabbix/api_jsonrpc.php"
+      description: "Zabbix JSON-RPC API for infrastructure monitoring"
+      authentication:
+        type: bearer
+        token: "{{ZABBIX_API_TOKEN}}"
+      resources:
+        - name: hosts
+          path: /
+          description: Host management operations
+          operations:
+            - name: get-hosts
+              method: POST
+              description: Get list of monitored hosts
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "host.get"
+                  params:
+                    output: "extend"
+                    groupids: "{{tools.groupid}}"
+                  id: 1
+            - name: create-host
+              method: POST
+              description: Create a new monitored host
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "host.create"
+                  params:
+                    host: "{{tools.hostname}}"
+                    groups:
+                      - groupid: "{{tools.groupid}}"
+                  id: 1
+            - name: delete-host
+              method: POST
+              description: Delete a monitored host
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "host.delete"
+                  params:
+                    - "{{tools.hostid}}"
+                  id: 1
+
+        - name: host-groups
+          path: /
+          description: Host group management
+          operations:
+            - name: get-host-groups
+              method: POST
+              description: Get list of host groups
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "hostgroup.get"
+                  params:
+                    output: "extend"
+                  id: 1
+
+        - name: items
+          path: /
+          description: Monitoring item management
+          operations:
+            - name: get-items
+              method: POST
+              description: Get monitoring items for a host
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "item.get"
+                  params:
+                    output: "extend"
+                    hostids: "{{tools.hostid}}"
+                  id: 1
+
+        - name: triggers
+          path: /
+          description: Trigger management
+          operations:
+            - name: get-triggers
+              method: POST
+              description: Get triggers for a host or host group
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "trigger.get"
+                  params:
+                    output: "extend"
+                    hostids: "{{tools.hostid}}"
+                  id: 1
+
+        - name: problems
+          path: /
+          description: Active problem retrieval
+          operations:
+            - name: get-problems
+              method: POST
+              description: Get active monitoring problems
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "problem.get"
+                  params:
+                    output: "extend"
+                    recent: "true"
+                    sortfield:
+                      - "eventid"
+                    sortorder: "DESC"
+                  id: 1
+
+        - name: events
+          path: /
+          description: Event management
+          operations:
+            - name: get-events
+              method: POST
+              description: Get monitoring events
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "event.get"
+                  params:
+                    output: "extend"
+                    objectids: "{{tools.triggerid}}"
+                    sortfield: "clock"
+                    sortorder: "DESC"
+                    limit: 20
+                  id: 1
+            - name: acknowledge-event
+              method: POST
+              description: Acknowledge a monitoring event
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "event.acknowledge"
+                  params:
+                    eventids: "{{tools.eventid}}"
+                    action: 6
+                    message: "{{tools.message}}"
+                  id: 1
+
+        - name: history
+          path: /
+          description: Historical monitoring data
+          operations:
+            - name: get-history
+              method: POST
+              description: Get historical metric values for an item
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "history.get"
+                  params:
+                    output: "extend"
+                    history: 0
+                    itemids: "{{tools.itemid}}"
+                    sortfield: "clock"
+                    sortorder: "DESC"
+                    limit: 100
+                  id: 1
+
+        - name: users
+          path: /
+          description: User management
+          operations:
+            - name: get-users
+              method: POST
+              description: Get Zabbix users
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$.result"
+              body:
+                type: json
+                data:
+                  jsonrpc: "2.0"
+                  method: "user.get"
+                  params:
+                    output: "extend"
+                  id: 1
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: zabbix-api
+      resources:
+        - path: /v1/hosts
+          name: hosts
+          description: Managed hosts in Zabbix
+          operations:
+            - method: GET
+              name: get-hosts
+              description: List all monitored hosts
+              call: "zabbix.get-hosts"
+              with:
+                groupid: "rest.groupid"
+              outputParameters:
+                - type: array
+                  mapping: "$.result"
+            - method: POST
+              name: create-host
+              description: Add a new host to monitoring
+              call: "zabbix.create-host"
+              with:
+                hostname: "rest.hostname"
+                groupid: "rest.groupid"
+              outputParameters:
+                - type: object
+                  mapping: "$.result"
+        - path: /v1/hosts/{hostid}
+          name: host
+          description: Single host management
+          operations:
+            - method: DELETE
+              name: delete-host
+              description: Remove a host from monitoring
+              call: "zabbix.delete-host"
+              with:
+                hostid: "rest.hostid"
+              outputParameters:
+                - type: object
+                  mapping: "$.result"
+        - path: /v1/host-groups
+          name: host-groups
+          description: Host groups in Zabbix
+          operations:
+            - method: GET
+              name: get-host-groups
+              description: List all host groups
+              call: "zabbix.get-host-groups"
+              outputParameters:
+                - type: array
+                  mapping: "$.result"
+        - path: /v1/items
+          name: items
+          description: Monitoring items
+          operations:
+            - method: GET
+              name: get-items
+              description: List monitoring items for a host
+              call: "zabbix.get-items"
+              with:
+                hostid: "rest.hostid"
+              outputParameters:
+                - type: array
+                  mapping: "$.result"
+        - path: /v1/problems
+          name: problems
+          description: Active monitoring problems
+          operations:
+            - method: GET
+              name: get-problems
+              description: List active monitoring problems
+              call: "zabbix.get-problems"
+              outputParameters:
+                - type: array
+                  mapping: "$.result"
+        - path: /v1/events
+          name: events
+          description: Monitoring events
+          operations:
+            - method: GET
+              name: get-events
+              description: List monitoring events for a trigger
+              call: "zabbix.get-events"
+              with:
+                triggerid: "rest.triggerid"
+              outputParameters:
+                - type: array
+                  mapping: "$.result"
+        - path: /v1/history
+          name: history
+          description: Historical metric data
+          operations:
+            - method: GET
+              name: get-history
+              description: Get historical values for a monitoring item
+              call: "zabbix.get-history"
+              with:
+                itemid: "rest.itemid"
+              outputParameters:
+                - type: array
+                  mapping: "$.result"
+
+    - type: mcp
+      port: 9100
+      namespace: zabbix-mcp
+      transport: http
+      tools:
+        - name: get-hosts
+          description: List all monitored hosts in Zabbix, optionally filtered by host group
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-hosts"
+          with:
+            groupid: "tools.groupid"
+          outputParameters:
+            - type: array
+              mapping: "$.result"
+        - name: create-host
+          description: Add a new host to Zabbix monitoring
+          hints:
+            readOnly: false
+            destructive: false
+          call: "zabbix.create-host"
+          with:
+            hostname: "tools.hostname"
+            groupid: "tools.groupid"
+          outputParameters:
+            - type: object
+              mapping: "$.result"
+        - name: delete-host
+          description: Remove a host from Zabbix monitoring
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "zabbix.delete-host"
+          with:
+            hostid: "tools.hostid"
+          outputParameters:
+            - type: object
+              mapping: "$.result"
+        - name: get-host-groups
+          description: List all host groups in Zabbix
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-host-groups"
+          outputParameters:
+            - type: array
+              mapping: "$.result"
+        - name: get-items
+          description: List monitoring items configured for a specific host
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-items"
+          with:
+            hostid: "tools.hostid"
+          outputParameters:
+            - type: array
+              mapping: "$.result"
+        - name: get-problems
+          description: Get currently active monitoring problems
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-problems"
+          outputParameters:
+            - type: array
+              mapping: "$.result"
+        - name: get-events
+          description: Get events triggered by a specific trigger
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-events"
+          with:
+            triggerid: "tools.triggerid"
+          outputParameters:
+            - type: array
+              mapping: "$.result"
+        - name: acknowledge-event
+          description: Acknowledge a Zabbix monitoring event with a message
+          hints:
+            readOnly: false
+            destructive: false
+          call: "zabbix.acknowledge-event"
+          with:
+            eventid: "tools.eventid"
+            message: "tools.message"
+          outputParameters:
+            - type: object
+              mapping: "$.result"
+        - name: get-history
+          description: Retrieve historical metric values for a monitoring item
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-history"
+          with:
+            itemid: "tools.itemid"
+          outputParameters:
+            - type: array
+              mapping: "$.result"
+        - name: get-users
+          description: List Zabbix users
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "zabbix.get-users"
+          outputParameters:
+            - type: array
+              mapping: "$.result"

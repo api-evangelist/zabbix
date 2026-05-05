@@ -1,0 +1,39 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "method": "history.get",
+    "params": {
+      "output": "extend",
+      "history": 0,
+      "itemids": "23296",
+      "sortfield": "clock",
+      "sortorder": "DESC",
+      "limit": 5
+    },
+    "id": 2
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "result": [
+      {
+        "itemid": "23296",
+        "clock": "1715000000",
+        "value": "0.1500",
+        "ns": "25547432"
+      },
+      {
+        "itemid": "23296",
+        "clock": "1714999940",
+        "value": "0.1600",
+        "ns": "90532142"
+      },
+      {
+        "itemid": "23296",
+        "clock": "1714999880",
+        "value": "0.1400",
+        "ns": "25547432"
+      }
+    ],
+    "id": 2
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "request": {
+    "jsonrpc": "2.0",
+    "method": "host.get",
+    "params": {
+      "output": "extend",
+      "groupids": "4",
+      "selectInterfaces": ["interfaceid", "ip", "port"],
+      "selectGroups": ["groupid", "name"],
+      "limit": 5
+    },
+    "id": 1
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "result": [
+      {
+        "hostid": "10084",
+        "proxy_hostid": "0",
+        "host": "Zabbix server",
+        "status": "0",
+        "lastaccess": "0",
+        "ipmi_authtype": "-1",
+        "ipmi_privilege": "2",
+        "ipmi_username": "",
+        "ipmi_password": "",
+        "maintenanceid": "0",
+        "maintenance_status": "0",
+        "maintenance_type": "0",
+        "maintenance_from": "0",
+        "name": "Zabbix server",
+        "flags": "0",
+        "templateid": "0",
+        "description": "Zabbix monitoring server",
+        "tls_connect": "1",
+        "tls_accept": "1",
+        "inventory_mode": "-1",
+        "interfaces": [
+          {
+            "interfaceid": "1",
+            "ip": "127.0.0.1",
+            "port": "10050"
+          }
+        ],
+        "groups": [
+          {
+            "groupid": "4",
+            "name": "Zabbix servers"
+          }
+        ]
+      }
+    ],
+    "id": 1
+  }
+}
