@@ -99,6 +99,109 @@ common:
       - name: Scalable Distributed Monitoring
       - name: Auto Discovery
       - name: API Automation
+  - type: Integrations
+    url: https://www.zabbix.com/integrations
+integrations:
+  - name: 3com
+  - name: 3CX
+  - name: Acronis
+  - name: actidata
+  - name: Active Directory
+  - name: ActiveMQ
+  - name: Adaptec
+  - name: ADVA
+  - name: Airco Airco
+  - name: IBM AIX
+  - name: AKCP
+  - name: Alcatel Lucent
+  - name: Alerta Alerta
+  - name: All Quiet
+  - name: ALVAO
+  - name: Alvarion
+  - name: AMD
+  - name: Android
+  - name: Ansible
+  - name: Antivirus
+  - name: Apache HTTP Server
+  - name: APC
+  - name: Aranet
+  - name: Arbor
+  - name: arcserve
+  - name: Arduino
+  - name: Arista
+  - name: Arrow Arrow
+  - name: Aruba
+  - name: IBM AS/400
+  - name: AsGa AsGa
+  - name: Asigra
+  - name: Asterisk
+  - name: ASUS
+  - name: ASUSTOR
+  - name: Audemat Audemat
+  - name: Avaya
+  - name: Avid
+  - name: AVTECH
+  - name: AWS
+  - name: AWS EC2
+  - name: AWS ECS
+  - name: AWS ELB
+  - name: AWS RDS
+  - name: AWS S3
+  - name: Axigen
+  - name: AXIS
+  - name: Microsoft Azure
+  - name: BackupPC
+  - name: Backup
+  - name: Bacula
+  - name: balabit
+  - name: Bigpanda
+  - name: Blue Coat
+  - name: Brevis.one
+  - name: Brocade
+  - name: Brother
+  - name: Brrr Brrr
+  - name: Buffalo
+  - name: Calix
+  - name: Canon
+  - name: Cassandra
+  - name: Centos
+  - name: Ceph
+  - name: Check Point
+  - name: Chef
+  - name: Chrome
+  - name: chrony chrony
+  - name: Ciena
+  - name: Cisco
+  - name: Citrix
+  - name: Clickhouse
+  - name: ClickSend
+  - name: Cloudflare
+  - name: Cloud Foundry
+  - name: Cloudstack
+  - name: CloudThinker
+  - name: AWS CloudWatch
+  - name: ClusterControl ClusterControl
+  - name: CockroachDB
+  - name: Confluence
+  - name: BMC Control-M
+  - name: CoreOS
+  - name: Couchbase
+  - name: Cradlepoint
+  - name: CTC Union
+  - name: Cyberpower Cyberpower
+  - name: D-Link
+  - name: Dahua
+  - name: Datacom
+  - name: DB2
+  - name: DCM
+  - name: Debian
+  - name: Dell
+  - name: Delta
+  - name: DEVA
+  - name: DHCP DHCP
+  - name: DIGISOL
+  - name: Digital Devices
+  - name: Discord
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
