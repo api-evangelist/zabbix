@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zabbix API — Users
+  description: 'Zabbix API — Users. 2 operations. Lead operation: Create User. Self-contained Naftiko capability covering
+    one Zabbix business surface.'
+  tags:
+  - Zabbix
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZABBIX_API_KEY: ZABBIX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zabbix-users
+    baseUri: https://{host}/zabbix/api_jsonrpc.php
+    description: Zabbix API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: user.create
+      path: /user.create
+      operations:
+      - name: usercreate
+        method: POST
+        description: Create User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: user.get
+      path: /user.get
+      operations:
+      - name: userget
+        method: POST
+        description: Get Users
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ZABBIX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: zabbix-users-rest
+    port: 8080
+    description: REST adapter for Zabbix API — Users. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/user-create
+      name: user-create
+      description: REST surface for user.create.
+      operations:
+      - method: POST
+        name: usercreate
+        description: Create User
+        call: zabbix-users.usercreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user-get
+      name: user-get
+      description: REST surface for user.get.
+      operations:
+      - method: POST
+        name: userget
+        description: Get Users
+        call: zabbix-users.userget
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zabbix-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zabbix API — Users. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-user
+      description: Create User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-users.usercreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-users
+      description: Get Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: zabbix-users.userget
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

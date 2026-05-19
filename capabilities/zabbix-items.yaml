@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zabbix API — Items
+  description: 'Zabbix API — Items. 2 operations. Lead operation: Create Item. Self-contained Naftiko capability covering
+    one Zabbix business surface.'
+  tags:
+  - Zabbix
+  - Items
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZABBIX_API_KEY: ZABBIX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zabbix-items
+    baseUri: https://{host}/zabbix/api_jsonrpc.php
+    description: Zabbix API — Items business capability. Self-contained, no shared references.
+    resources:
+    - name: item.create
+      path: /item.create
+      operations:
+      - name: itemcreate
+        method: POST
+        description: Create Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: item.get
+      path: /item.get
+      operations:
+      - name: itemget
+        method: POST
+        description: Get Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ZABBIX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: zabbix-items-rest
+    port: 8080
+    description: REST adapter for Zabbix API — Items. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/item-create
+      name: item-create
+      description: REST surface for item.create.
+      operations:
+      - method: POST
+        name: itemcreate
+        description: Create Item
+        call: zabbix-items.itemcreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/item-get
+      name: item-get
+      description: REST surface for item.get.
+      operations:
+      - method: POST
+        name: itemget
+        description: Get Items
+        call: zabbix-items.itemget
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zabbix-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zabbix API — Items. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-item
+      description: Create Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-items.itemcreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-items
+      description: Get Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: zabbix-items.itemget
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,207 +1,223 @@
 aid: zabbix
 name: Zabbix
-description: >-
-  Zabbix is an enterprise-class open source distributed monitoring solution
-  for networks and applications. Zabbix enables real-time monitoring of millions
-  of metrics collected from tens of thousands of servers, virtual machines, and
-  network devices. The Zabbix API provides JSON-RPC 2.0 access for programmatically
-  managing host configurations, collecting monitoring data, and automating operations.
+description: Zabbix is an enterprise-class open source distributed monitoring solution for networks and applications. Zabbix
+  enables real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines, and network
+  devices. The Zabbix API provides JSON-RPC 2.0 access for programmatically managing host configurations, collecting monitoring
+  data, and automating operations.
 image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
 url: https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-05-03'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
+- Monitoring
+- Infrastructure
+- Networks
+- Alerting
+- Open Source
+- Observability
+apis:
+- aid: zabbix:zabbix-api
+  name: Zabbix API
+  description: The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of
+    Zabbix and accessing historical monitoring data. Supports host management, item configuration, trigger management, event
+    handling, alerting, user management, and historical data retrieval.
+  image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
   - Monitoring
   - Infrastructure
-  - Networks
+  - JSON-RPC
   - Alerting
-  - Open Source
-  - Observability
-apis:
-  - aid: zabbix:zabbix-api
-    name: Zabbix API
-    description: >-
-      The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving
-      and modifying the configuration of Zabbix and accessing historical monitoring
-      data. Supports host management, item configuration, trigger management,
-      event handling, alerting, user management, and historical data retrieval.
-    image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
-    humanURL: https://www.zabbix.com/documentation/current/en/manual/api
-    baseURL: https://{host}/zabbix/api_jsonrpc.php
-    tags:
-      - Monitoring
-      - Infrastructure
-      - JSON-RPC
-      - Alerting
-      - Networks
-    properties:
-      - type: Documentation
-        url: https://www.zabbix.com/documentation/current/en/manual/api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/openapi/zabbix-openapi.yml
-      - type: GettingStarted
-        url: https://www.zabbix.com/documentation/current/en/manual/quickstart
-      - type: Authentication
-        url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
-      - type: ChangeLog
-        url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
-    contact:
-      - type: Support
-        url: https://www.zabbix.com/support
-      - type: Forum
-        url: https://www.zabbix.com/forum
-      - type: Email
-        url: mailto:sales@zabbix.com
+  - Networks
+  properties:
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/openapi/zabbix-openapi.yml
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+  - type: NaftikoCapability
+    url: capabilities/zabbix-actions.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-authentication.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-events.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-history.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-host-groups.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-hosts.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-items.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-problems.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-triggers.yaml
+  - type: NaftikoCapability
+    url: capabilities/zabbix-users.yaml
+  contact:
+  - type: Support
+    url: https://www.zabbix.com/support
+  - type: Forum
+    url: https://www.zabbix.com/forum
+  - type: Email
+    url: mailto:sales@zabbix.com
 common:
-  - type: Portal
-    url: https://www.zabbix.com
-  - type: Blog
-    url: https://blog.zabbix.com
-  - type: GitHub
-    url: https://github.com/zabbix/zabbix
-  - type: GitHubOrg
-    url: https://github.com/zabbix
-  - type: Docker
-    url: https://github.com/zabbix/zabbix-docker
-  - type: AnsibleCollection
-    url: https://github.com/zabbix/ansible-collection
-  - type: CommunityTemplates
-    url: https://github.com/zabbix/community-templates
-  - type: Twitter
-    url: https://twitter.com/zabbix
-  - type: PrivacyPolicy
-    url: https://www.zabbix.com/privacy_policy
-  - type: TermsOfService
-    url: https://www.zabbix.com/terms_of_use
-  - type: Download
-    url: https://www.zabbix.com/download
-  - type: Integrations
-    data:
-      - name: Ansible Collection
-      - name: Docker / Kubernetes
-      - name: Grafana Plugin
-      - name: Slack Notifications
-      - name: PagerDuty Integration
-      - name: Jira Integration
-      - name: ServiceNow Integration
-  - type: Features
-    data:
-      - name: Host Monitoring
-      - name: Network Monitoring
-      - name: Application Monitoring
-      - name: Cloud Monitoring
-      - name: Agent-Based Collection
-      - name: Agentless Collection (SNMP, IPMI, JMX)
-      - name: Triggers and Alerting
-      - name: Dashboards and Visualizations
-      - name: Historical Data Storage
-      - name: Scalable Distributed Monitoring
-      - name: Auto Discovery
-      - name: API Automation
-  - type: Integrations
-    url: https://www.zabbix.com/integrations
+- type: Portal
+  url: https://www.zabbix.com
+- type: Blog
+  url: https://blog.zabbix.com
+- type: GitHub
+  url: https://github.com/zabbix/zabbix
+- type: GitHubOrg
+  url: https://github.com/zabbix
+- type: Docker
+  url: https://github.com/zabbix/zabbix-docker
+- type: AnsibleCollection
+  url: https://github.com/zabbix/ansible-collection
+- type: CommunityTemplates
+  url: https://github.com/zabbix/community-templates
+- type: Twitter
+  url: https://twitter.com/zabbix
+- type: PrivacyPolicy
+  url: https://www.zabbix.com/privacy_policy
+- type: TermsOfService
+  url: https://www.zabbix.com/terms_of_use
+- type: Download
+  url: https://www.zabbix.com/download
+- type: Integrations
+  data:
+  - name: Ansible Collection
+  - name: Docker / Kubernetes
+  - name: Grafana Plugin
+  - name: Slack Notifications
+  - name: PagerDuty Integration
+  - name: Jira Integration
+  - name: ServiceNow Integration
+- type: Features
+  data:
+  - name: Host Monitoring
+  - name: Network Monitoring
+  - name: Application Monitoring
+  - name: Cloud Monitoring
+  - name: Agent-Based Collection
+  - name: Agentless Collection (SNMP, IPMI, JMX)
+  - name: Triggers and Alerting
+  - name: Dashboards and Visualizations
+  - name: Historical Data Storage
+  - name: Scalable Distributed Monitoring
+  - name: Auto Discovery
+  - name: API Automation
+- type: Integrations
+  url: https://www.zabbix.com/integrations
 integrations:
-  - name: 3com
-  - name: 3CX
-  - name: Acronis
-  - name: actidata
-  - name: Active Directory
-  - name: ActiveMQ
-  - name: Adaptec
-  - name: ADVA
-  - name: Airco Airco
-  - name: IBM AIX
-  - name: AKCP
-  - name: Alcatel Lucent
-  - name: Alerta Alerta
-  - name: All Quiet
-  - name: ALVAO
-  - name: Alvarion
-  - name: AMD
-  - name: Android
-  - name: Ansible
-  - name: Antivirus
-  - name: Apache HTTP Server
-  - name: APC
-  - name: Aranet
-  - name: Arbor
-  - name: arcserve
-  - name: Arduino
-  - name: Arista
-  - name: Arrow Arrow
-  - name: Aruba
-  - name: IBM AS/400
-  - name: AsGa AsGa
-  - name: Asigra
-  - name: Asterisk
-  - name: ASUS
-  - name: ASUSTOR
-  - name: Audemat Audemat
-  - name: Avaya
-  - name: Avid
-  - name: AVTECH
-  - name: AWS
-  - name: AWS EC2
-  - name: AWS ECS
-  - name: AWS ELB
-  - name: AWS RDS
-  - name: AWS S3
-  - name: Axigen
-  - name: AXIS
-  - name: Microsoft Azure
-  - name: BackupPC
-  - name: Backup
-  - name: Bacula
-  - name: balabit
-  - name: Bigpanda
-  - name: Blue Coat
-  - name: Brevis.one
-  - name: Brocade
-  - name: Brother
-  - name: Brrr Brrr
-  - name: Buffalo
-  - name: Calix
-  - name: Canon
-  - name: Cassandra
-  - name: Centos
-  - name: Ceph
-  - name: Check Point
-  - name: Chef
-  - name: Chrome
-  - name: chrony chrony
-  - name: Ciena
-  - name: Cisco
-  - name: Citrix
-  - name: Clickhouse
-  - name: ClickSend
-  - name: Cloudflare
-  - name: Cloud Foundry
-  - name: Cloudstack
-  - name: CloudThinker
-  - name: AWS CloudWatch
-  - name: ClusterControl ClusterControl
-  - name: CockroachDB
-  - name: Confluence
-  - name: BMC Control-M
-  - name: CoreOS
-  - name: Couchbase
-  - name: Cradlepoint
-  - name: CTC Union
-  - name: Cyberpower Cyberpower
-  - name: D-Link
-  - name: Dahua
-  - name: Datacom
-  - name: DB2
-  - name: DCM
-  - name: Debian
-  - name: Dell
-  - name: Delta
-  - name: DEVA
-  - name: DHCP DHCP
-  - name: DIGISOL
-  - name: Digital Devices
-  - name: Discord
+- name: 3com
+- name: 3CX
+- name: Acronis
+- name: actidata
+- name: Active Directory
+- name: ActiveMQ
+- name: Adaptec
+- name: ADVA
+- name: Airco Airco
+- name: IBM AIX
+- name: AKCP
+- name: Alcatel Lucent
+- name: Alerta Alerta
+- name: All Quiet
+- name: ALVAO
+- name: Alvarion
+- name: AMD
+- name: Android
+- name: Ansible
+- name: Antivirus
+- name: Apache HTTP Server
+- name: APC
+- name: Aranet
+- name: Arbor
+- name: arcserve
+- name: Arduino
+- name: Arista
+- name: Arrow Arrow
+- name: Aruba
+- name: IBM AS/400
+- name: AsGa AsGa
+- name: Asigra
+- name: Asterisk
+- name: ASUS
+- name: ASUSTOR
+- name: Audemat Audemat
+- name: Avaya
+- name: Avid
+- name: AVTECH
+- name: AWS
+- name: AWS EC2
+- name: AWS ECS
+- name: AWS ELB
+- name: AWS RDS
+- name: AWS S3
+- name: Axigen
+- name: AXIS
+- name: Microsoft Azure
+- name: BackupPC
+- name: Backup
+- name: Bacula
+- name: balabit
+- name: Bigpanda
+- name: Blue Coat
+- name: Brevis.one
+- name: Brocade
+- name: Brother
+- name: Brrr Brrr
+- name: Buffalo
+- name: Calix
+- name: Canon
+- name: Cassandra
+- name: Centos
+- name: Ceph
+- name: Check Point
+- name: Chef
+- name: Chrome
+- name: chrony chrony
+- name: Ciena
+- name: Cisco
+- name: Citrix
+- name: Clickhouse
+- name: ClickSend
+- name: Cloudflare
+- name: Cloud Foundry
+- name: Cloudstack
+- name: CloudThinker
+- name: AWS CloudWatch
+- name: ClusterControl ClusterControl
+- name: CockroachDB
+- name: Confluence
+- name: BMC Control-M
+- name: CoreOS
+- name: Couchbase
+- name: Cradlepoint
+- name: CTC Union
+- name: Cyberpower Cyberpower
+- name: D-Link
+- name: Dahua
+- name: Datacom
+- name: DB2
+- name: DCM
+- name: Debian
+- name: Dell
+- name: Delta
+- name: DEVA
+- name: DHCP DHCP
+- name: DIGISOL
+- name: Digital Devices
+- name: Discord
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

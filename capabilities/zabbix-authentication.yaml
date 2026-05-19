@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zabbix API — Authentication
+  description: 'Zabbix API — Authentication. 2 operations. Lead operation: User Login. Self-contained Naftiko capability covering
+    one Zabbix business surface.'
+  tags:
+  - Zabbix
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZABBIX_API_KEY: ZABBIX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zabbix-authentication
+    baseUri: https://{host}/zabbix/api_jsonrpc.php
+    description: Zabbix API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: userlogin
+        method: POST
+        description: User Login
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: user.logout
+      path: /user.logout
+      operations:
+      - name: userlogout
+        method: POST
+        description: User Logout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ZABBIX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: zabbix-authentication-rest
+    port: 8080
+    description: REST adapter for Zabbix API — Authentication. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: POST
+        name: userlogin
+        description: User Login
+        call: zabbix-authentication.userlogin
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user-logout
+      name: user-logout
+      description: REST surface for user.logout.
+      operations:
+      - method: POST
+        name: userlogout
+        description: User Logout
+        call: zabbix-authentication.userlogout
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zabbix-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zabbix API — Authentication. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: user-login
+      description: User Login
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-authentication.userlogin
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: user-logout
+      description: User Logout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-authentication.userlogout
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

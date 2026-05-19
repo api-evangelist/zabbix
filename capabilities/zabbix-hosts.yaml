@@ -1,0 +1,208 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zabbix API — Hosts
+  description: 'Zabbix API — Hosts. 4 operations. Lead operation: Create Host. Self-contained Naftiko capability covering
+    one Zabbix business surface.'
+  tags:
+  - Zabbix
+  - Hosts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZABBIX_API_KEY: ZABBIX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zabbix-hosts
+    baseUri: https://{host}/zabbix/api_jsonrpc.php
+    description: Zabbix API — Hosts business capability. Self-contained, no shared references.
+    resources:
+    - name: host.create
+      path: /host.create
+      operations:
+      - name: hostcreate
+        method: POST
+        description: Create Host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: host.delete
+      path: /host.delete
+      operations:
+      - name: hostdelete
+        method: POST
+        description: Delete Host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: host.get
+      path: /host.get
+      operations:
+      - name: hostget
+        method: POST
+        description: Get Hosts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: host.update
+      path: /host.update
+      operations:
+      - name: hostupdate
+        method: POST
+        description: Update Host
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ZABBIX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: zabbix-hosts-rest
+    port: 8080
+    description: REST adapter for Zabbix API — Hosts. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/host-create
+      name: host-create
+      description: REST surface for host.create.
+      operations:
+      - method: POST
+        name: hostcreate
+        description: Create Host
+        call: zabbix-hosts.hostcreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/host-delete
+      name: host-delete
+      description: REST surface for host.delete.
+      operations:
+      - method: POST
+        name: hostdelete
+        description: Delete Host
+        call: zabbix-hosts.hostdelete
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/host-get
+      name: host-get
+      description: REST surface for host.get.
+      operations:
+      - method: POST
+        name: hostget
+        description: Get Hosts
+        call: zabbix-hosts.hostget
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/host-update
+      name: host-update
+      description: REST surface for host.update.
+      operations:
+      - method: POST
+        name: hostupdate
+        description: Update Host
+        call: zabbix-hosts.hostupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zabbix-hosts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zabbix API — Hosts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-host
+      description: Create Host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-hosts.hostcreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-host
+      description: Delete Host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-hosts.hostdelete
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-hosts
+      description: Get Hosts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: zabbix-hosts.hostget
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-host
+      description: Update Host
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zabbix-hosts.hostupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
