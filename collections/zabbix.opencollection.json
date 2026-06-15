@@ -1,0 +1,504 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zabbix API",
+    "version": "7.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "User Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and creates an API session token. The token must be included in all subsequent API requests."
+        },
+        {
+          "info": {
+            "name": "User Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/user.logout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Logs out the user and invalidates the current session token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/host.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of hosts matching the given parameters. Supports filtering by host name, group, template, IP, and many other criteria."
+        },
+        {
+          "info": {
+            "name": "Create Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/host.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates one or more new hosts in Zabbix."
+        },
+        {
+          "info": {
+            "name": "Update Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/host.update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing host in Zabbix."
+        },
+        {
+          "info": {
+            "name": "Delete Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/host.delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes hosts from Zabbix by host ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Host Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Host Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/hostgroup.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of host groups based on the given parameters."
+        },
+        {
+          "info": {
+            "name": "Create Host Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/hostgroup.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates one or more new host groups in Zabbix."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/item.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of monitoring items based on the given parameters."
+        },
+        {
+          "info": {
+            "name": "Create Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/item.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates new monitoring items on a host."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/trigger.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of triggers based on the given parameters."
+        },
+        {
+          "info": {
+            "name": "Create Trigger",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/trigger.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates new monitoring triggers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/event.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns events based on the given parameters, including alerts and triggers."
+        },
+        {
+          "info": {
+            "name": "Acknowledge Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/event.acknowledge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Acknowledges one or more events and optionally adds a message."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Problems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Problems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/problem.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns active problems currently affecting monitored hosts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/action.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns action configurations from Zabbix."
+        },
+        {
+          "info": {
+            "name": "Create Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/action.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates new actions for alerting or automated command execution."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/user.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of users matching the given parameters."
+        },
+        {
+          "info": {
+            "name": "Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/user.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates new Zabbix user accounts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get History",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/history.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns historical monitoring data for items over a time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
