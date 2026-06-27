@@ -47,7 +47,7 @@ apis:
     contact:
       - type: Support
         url: https://www.zabbix.com/support
-      - type: Forum
+      - type: Forums
         url: https://www.zabbix.com/forum
       - type: Email
         url: mailto:sales@zabbix.com
