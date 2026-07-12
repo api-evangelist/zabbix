@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/zabbix-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Zabbix API token obtained via user.login. Pass as "Bearer {token}" in the Authorization
+    header (Zabbix 5.4+), or in the auth field of the JSON-RPC request body.
+  sources:
+  - openapi/zabbix-openapi.yml

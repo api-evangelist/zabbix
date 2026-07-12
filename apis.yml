@@ -52,6 +52,10 @@ apis:
       - type: Email
         url: mailto:sales@zabbix.com
 common:
+  - type: DomainSecurity
+    url: security/zabbix-domain-security.yml
+  - type: Authentication
+    url: authentication/zabbix-authentication.yml
   - type: Portal
     url: https://www.zabbix.com
   - type: Blog
