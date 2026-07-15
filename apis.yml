@@ -52,6 +52,8 @@ apis:
       - type: Email
         url: mailto:sales@zabbix.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/zabbix-agentic-access.yml
   - type: DomainSecurity
     url: security/zabbix-domain-security.yml
   - type: Authentication
