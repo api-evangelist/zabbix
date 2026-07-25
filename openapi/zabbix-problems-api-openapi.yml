@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Zabbix Actions Problems API
+  description: The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. The API is shipped as part of the Zabbix web frontend and accessible at /zabbix/api_jsonrpc.php.
+  version: '7.0'
+  contact:
+    name: Zabbix Support
+    url: https://www.zabbix.com/support
+  license:
+    name: GNU GPL v2
+    url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  x-logo:
+    url: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+servers:
+- url: https://{host}/zabbix/api_jsonrpc.php
+  description: Zabbix Server JSON-RPC Endpoint
+  variables:
+    host:
+      description: Your Zabbix server hostname
+      default: localhost
+tags:
+- name: Problems
+  description: Active problem retrieval
+paths:
+  /problem.get:
+    post:
+      operationId: problem-get
+      summary: Get Problems
+      description: Returns active problems currently affecting monitored hosts.
+      tags:
+      - Problems
+      security:
+      - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of active problems
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: problem.get
+components:
+  schemas:
+    JsonRpcArrayResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: array
+          items:
+            type: object
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
+        id:
+          type: integer
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Zabbix API token obtained via user.login. Pass as "Bearer {token}" in the Authorization header (Zabbix 5.4+), or in the auth field of the JSON-RPC request body.

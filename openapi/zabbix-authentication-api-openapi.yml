@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Zabbix Actions Authentication API
+  description: The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. The API is shipped as part of the Zabbix web frontend and accessible at /zabbix/api_jsonrpc.php.
+  version: '7.0'
+  contact:
+    name: Zabbix Support
+    url: https://www.zabbix.com/support
+  license:
+    name: GNU GPL v2
+    url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  x-logo:
+    url: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+servers:
+- url: https://{host}/zabbix/api_jsonrpc.php
+  description: Zabbix Server JSON-RPC Endpoint
+  variables:
+    host:
+      description: Your Zabbix server hostname
+      default: localhost
+tags:
+- name: Authentication
+  description: User login and session management
+paths:
+  /:
+    post:
+      operationId: user-login
+      summary: User Login
+      description: Authenticates a user and creates an API session token. The token must be included in all subsequent API requests.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: '2.0'
+              method: user.login
+              params:
+                username: Admin
+                password: zabbix
+              id: 1
+      responses:
+        '200':
+          description: Authentication token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcStringResponse'
+      x-rpc-method: user.login
+  /user.logout:
+    post:
+      operationId: user-logout
+      summary: User Logout
+      description: Logs out the user and invalidates the current session token.
+      tags:
+      - Authentication
+      security:
+      - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+            example:
+              jsonrpc: '2.0'
+              method: user.logout
+              params: []
+              id: 2
+      responses:
+        '200':
+          description: Logout result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcBoolResponse'
+      x-rpc-method: user.logout
+components:
+  schemas:
+    JsonRpcBoolResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    JsonRpcStringResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: string
+          description: Authentication token
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
+        id:
+          type: integer
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Zabbix API token obtained via user.login. Pass as "Bearer {token}" in the Authorization header (Zabbix 5.4+), or in the auth field of the JSON-RPC request body.

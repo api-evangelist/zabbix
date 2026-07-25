@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: Zabbix Actions Events API
+  description: The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. The API is shipped as part of the Zabbix web frontend and accessible at /zabbix/api_jsonrpc.php.
+  version: '7.0'
+  contact:
+    name: Zabbix Support
+    url: https://www.zabbix.com/support
+  license:
+    name: GNU GPL v2
+    url: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  x-logo:
+    url: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
+servers:
+- url: https://{host}/zabbix/api_jsonrpc.php
+  description: Zabbix Server JSON-RPC Endpoint
+  variables:
+    host:
+      description: Your Zabbix server hostname
+      default: localhost
+tags:
+- name: Events
+  description: Event retrieval and acknowledgement
+paths:
+  /event.get:
+    post:
+      operationId: event-get
+      summary: Get Events
+      description: Returns events based on the given parameters, including alerts and triggers.
+      tags:
+      - Events
+      security:
+      - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: List of events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcArrayResponse'
+      x-rpc-method: event.get
+  /event.acknowledge:
+    post:
+      operationId: event-acknowledge
+      summary: Acknowledge Event
+      description: Acknowledges one or more events and optionally adds a message.
+      tags:
+      - Events
+      security:
+      - ApiToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Acknowledged event IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcIdsResponse'
+      x-rpc-method: event.acknowledge
+components:
+  schemas:
+    JsonRpcArrayResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: array
+          items:
+            type: object
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    JsonRpcIdsResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          properties:
+            hostids:
+              type: array
+              items:
+                type: string
+            groupids:
+              type: array
+              items:
+                type: string
+            itemids:
+              type: array
+              items:
+                type: string
+            triggerids:
+              type: array
+              items:
+                type: string
+            eventids:
+              type: array
+              items:
+                type: string
+            actionids:
+              type: array
+              items:
+                type: string
+            userids:
+              type: array
+              items:
+                type: string
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
+        id:
+          type: integer
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+  securitySchemes:
+    ApiToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Zabbix API token obtained via user.login. Pass as "Bearer {token}" in the Authorization header (Zabbix 5.4+), or in the auth field of the JSON-RPC request body.
