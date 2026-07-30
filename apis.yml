@@ -5,6 +5,19 @@ description: >-
   enables real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines, and
   network devices. The Zabbix API provides JSON-RPC 2.0 access for programmatically managing host configurations,
   collecting monitoring data, and automating operations.
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
 url: https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -18,39 +31,186 @@ tags:
   - Open Source
   - Observability
 apis:
-  - aid: zabbix:zabbix-api
-    name: Zabbix API
-    description: >-
-      The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of
-      Zabbix and accessing historical monitoring data. Supports host management, item configuration, trigger management,
-      event handling, alerting, user management, and historical data retrieval.
-    image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
-    humanURL: https://www.zabbix.com/documentation/current/en/manual/api
-    baseURL: https://{host}/zabbix/api_jsonrpc.php
-    tags:
-      - Monitoring
-      - Infrastructure
-      - JSON-RPC
-      - Alerting
-      - Networks
-    properties:
-      - type: Documentation
-        url: https://www.zabbix.com/documentation/current/en/manual/api
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/openapi/zabbix-openapi.yml
-      - type: GettingStarted
-        url: https://www.zabbix.com/documentation/current/en/manual/quickstart
-      - type: Authentication
-        url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
-      - type: ChangeLog
-        url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
-    contact:
-      - type: Support
-        url: https://www.zabbix.com/support
-      - type: Forums
-        url: https://www.zabbix.com/forum
-      - type: Email
-        url: mailto:sales@zabbix.com
+- aid: zabbix:zabbix-actions-api
+  name: Zabbix Actions API
+  description: Action configuration for alerting and automation
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-actions-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-authentication-api
+  name: Zabbix Authentication API
+  description: User login and session management
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-events-api
+  name: Zabbix Events API
+  description: Event retrieval and acknowledgement
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-events-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-history-api
+  name: Zabbix History API
+  description: Historical monitoring data
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - History
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-history-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-host-groups-api
+  name: Zabbix Host Groups API
+  description: Host group management
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Host Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-host-groups-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-hosts-api
+  name: Zabbix Hosts API
+  description: Host configuration and management
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-hosts-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-items-api
+  name: Zabbix Items API
+  description: Monitoring item configuration
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-items-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-problems-api
+  name: Zabbix Problems API
+  description: Active problem retrieval
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Problems
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-problems-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-triggers-api
+  name: Zabbix Triggers API
+  description: Trigger configuration and management
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
+- aid: zabbix:zabbix-users-api
+  name: Zabbix Users API
+  description: User account management
+  humanURL: https://www.zabbix.com/documentation/current/en/manual/api
+  baseURL: https://{host}/zabbix/api_jsonrpc.php
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/zabbix-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.zabbix.com/documentation/current/en/manual/api
+  - type: GettingStarted
+    url: https://www.zabbix.com/documentation/current/en/manual/quickstart
+  - type: Authentication
+    url: https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login
+  - type: ChangeLog
+    url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
 common:
   - type: AgenticAccess
     url: agentic-access/zabbix-agentic-access.yml
