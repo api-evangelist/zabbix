@@ -1,0 +1,32 @@
+{
+  "provider": "zabbix",
+  "sources": [
+    "zabbix-actions-api-openapi.yml",
+    "zabbix-authentication-api-openapi.yml",
+    "zabbix-events-api-openapi.yml",
+    "zabbix-history-api-openapi.yml",
+    "zabbix-host-groups-api-openapi.yml",
+    "zabbix-hosts-api-openapi.yml",
+    "zabbix-items-api-openapi.yml",
+    "zabbix-problems-api-openapi.yml",
+    "zabbix-triggers-api-openapi.yml",
+    "zabbix-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "zabbix-actions-api-openapi.yml",
+    "zabbix-authentication-api-openapi.yml",
+    "zabbix-events-api-openapi.yml",
+    "zabbix-history-api-openapi.yml",
+    "zabbix-host-groups-api-openapi.yml",
+    "zabbix-hosts-api-openapi.yml",
+    "zabbix-items-api-openapi.yml",
+    "zabbix-problems-api-openapi.yml",
+    "zabbix-triggers-api-openapi.yml",
+    "zabbix-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
