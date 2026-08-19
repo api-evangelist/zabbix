@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zabbix Actions Host Groups API",
+    "version": "7.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Host Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Host Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/hostgroup.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of host groups based on the given parameters."
+        },
+        {
+          "info": {
+            "name": "Create Host Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/hostgroup.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates one or more new host groups in Zabbix."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

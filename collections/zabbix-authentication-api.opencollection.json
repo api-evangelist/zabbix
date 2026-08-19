@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zabbix Actions Authentication API",
+    "version": "7.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "User Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates a user and creates an API session token. The token must be included in all subsequent API requests."
+        },
+        {
+          "info": {
+            "name": "User Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/user.logout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Logs out the user and invalidates the current session token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

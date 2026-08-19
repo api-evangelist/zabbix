@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zabbix Actions API",
+    "version": "7.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/action.get",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns action configurations from Zabbix."
+        },
+        {
+          "info": {
+            "name": "Create Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}/zabbix/api_jsonrpc.php/action.create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates new actions for alerting or automated command execution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

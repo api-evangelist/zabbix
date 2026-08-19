@@ -1,0 +1,557 @@
+{
+  "item": [
+    {
+      "id": "24434e52-853c-4435-94dc-2ee40c444bea",
+      "name": "Hosts",
+      "description": {
+        "content": "Host configuration and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3fdb8ddf-9e6e-4158-b67d-68bb06cd00b7",
+          "name": "Get Hosts",
+          "request": {
+            "name": "Get Hosts",
+            "description": {
+              "content": "Returns a list of hosts matching the given parameters. Supports filtering by host name, group, template, IP, and many other criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "host.get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Zabbix server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"<string>\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\",\n  \"auth\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6d692cc7-2bb6-4df0-8b1b-7c73640a1bde",
+              "name": "List of hosts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "host.get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Zabbix server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"host.get\",\n  \"params\": {\n    \"output\": \"extend\",\n    \"groupids\": \"4\",\n    \"selectInterfaces\": [\n      \"interfaceid\",\n      \"ip\"\n    ]\n  },\n  \"id\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 2967,\n  \"result\": [\n    {\n      \"hostid\": \"string\",\n      \"host\": \"string\",\n      \"name\": \"string\",\n      \"status\": 8478,\n      \"interfaces\": [\n        {\n          \"interfaceid\": \"string\",\n          \"hostid\": \"string\",\n          \"type\": 9460,\n          \"main\": 3490,\n          \"useip\": 5377,\n          \"ip\": \"string\",\n          \"dns\": \"string\",\n          \"port\": \"string\"\n        },\n        {\n          \"interfaceid\": \"string\",\n          \"hostid\": \"string\",\n          \"type\": 5489,\n          \"main\": 73,\n          \"useip\": 5533,\n          \"ip\": \"string\",\n          \"dns\": \"string\",\n          \"port\": \"string\"\n        }\n      ],\n      \"groups\": [\n        {\n          \"groupid\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"groupid\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"hostid\": \"string\",\n      \"host\": \"string\",\n      \"name\": \"string\",\n      \"status\": 9989,\n      \"interfaces\": [\n        {\n          \"interfaceid\": \"string\",\n          \"hostid\": \"string\",\n          \"type\": 3556,\n          \"main\": 7161,\n          \"useip\": 9601,\n          \"ip\": \"string\",\n          \"dns\": \"string\",\n          \"port\": \"string\"\n        },\n        {\n          \"interfaceid\": \"string\",\n          \"hostid\": \"string\",\n          \"type\": 2179,\n          \"main\": 4097,\n          \"useip\": 1359,\n          \"ip\": \"string\",\n          \"dns\": \"string\",\n          \"port\": \"string\"\n        }\n      ],\n      \"groups\": [\n        {\n          \"groupid\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"groupid\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"error\": {\n    \"code\": 480,\n    \"message\": \"string\",\n    \"data\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dec7227a-8051-40e4-9a80-2c8048101abf",
+          "name": "Create Host",
+          "request": {
+            "name": "Create Host",
+            "description": {
+              "content": "Creates one or more new hosts in Zabbix.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "host.create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Zabbix server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"<string>\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\",\n  \"auth\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd184709-8bca-454f-8848-c2857ff65140",
+              "name": "Created host IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "host.create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Zabbix server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"host.create\",\n  \"params\": {\n    \"host\": \"newhost.example.com\",\n    \"interfaces\": [\n      {\n        \"type\": 1,\n        \"main\": 1,\n        \"useip\": 1,\n        \"ip\": \"192.168.1.1\",\n        \"dns\": \"\",\n        \"port\": \"10050\"\n      }\n    ],\n    \"groups\": [\n      {\n        \"groupid\": \"4\"\n      }\n    ]\n  },\n  \"id\": 4\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 2216,\n  \"result\": {\n    \"hostids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"groupids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"itemids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"triggerids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"eventids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"actionids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"userids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"error\": {\n    \"code\": 3794,\n    \"message\": \"string\",\n    \"data\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "433474c4-c885-4781-9b79-696eb9cb4ec5",
+          "name": "Update Host",
+          "request": {
+            "name": "Update Host",
+            "description": {
+              "content": "Updates an existing host in Zabbix.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "host.update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Zabbix server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"<string>\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\",\n  \"auth\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f27920b7-4ad8-491a-b8e5-412fa2a8266d",
+              "name": "Updated host IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "host.update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Zabbix server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"<string>\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\",\n  \"auth\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 2216,\n  \"result\": {\n    \"hostids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"groupids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"itemids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"triggerids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"eventids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"actionids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"userids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"error\": {\n    \"code\": 3794,\n    \"message\": \"string\",\n    \"data\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61ca01a4-cbe3-40f5-a71d-855154f54640",
+          "name": "Delete Host",
+          "request": {
+            "name": "Delete Host",
+            "description": {
+              "content": "Deletes hosts from Zabbix by host ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "host.delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Zabbix server hostname",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"<string>\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\",\n  \"auth\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfad322a-a496-484e-895d-8e332ac723fc",
+              "name": "Deleted host IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "host.delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Zabbix server hostname",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"<string>\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\",\n  \"auth\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 2216,\n  \"result\": {\n    \"hostids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"groupids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"itemids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"triggerids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"eventids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"actionids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"userids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"error\": {\n    \"code\": 3794,\n    \"message\": \"string\",\n    \"data\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Zabbix server hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}/zabbix/api_jsonrpc.php",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7bdcbd18-61ab-4595-88e7-cf2c694cff9d",
+    "name": "Zabbix Actions Hosts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. The API is shipped as part of the Zabbix web frontend and accessible at /zabbix/api_jsonrpc.php.\n\nContact Support:\n Name: Zabbix Support",
+      "type": "text/plain"
+    }
+  }
+}
