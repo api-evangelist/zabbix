@@ -22,7 +22,7 @@ image: https://www.zabbix.com/assets/img/logo/zabbix_logo.png
 url: https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
   - Monitoring
   - Infrastructure
