@@ -28,6 +28,13 @@ tags:
   - Infrastructure
   - Networks
   - Alerting
+  - Open-Source
+  - Observability
+tags_raw:
+  - Monitoring
+  - Infrastructure
+  - Networks
+  - Alerting
   - Open Source
   - Observability
 apis:
@@ -73,6 +80,8 @@ apis:
   humanURL: https://www.zabbix.com/documentation/current/en/manual/api
   baseURL: https://{host}/zabbix/api_jsonrpc.php
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -145,6 +154,8 @@ apis:
   humanURL: https://www.zabbix.com/documentation/current/en/manual/api
   baseURL: https://{host}/zabbix/api_jsonrpc.php
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
@@ -199,6 +210,8 @@ apis:
   humanURL: https://www.zabbix.com/documentation/current/en/manual/api
   baseURL: https://{host}/zabbix/api_jsonrpc.php
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
