@@ -5,6 +5,18 @@ description: >-
   enables real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines, and
   network devices. The Zabbix API provides JSON-RPC 2.0 access for programmatically managing host configurations,
   collecting monitoring data, and automating operations.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
