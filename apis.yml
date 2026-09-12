@@ -238,6 +238,8 @@ apis:
   - type: ChangeLog
     url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
 common:
+  - type: Website
+    url: https://www.zabbix.com/
   - type: AgenticAccess
     url: agentic-access/zabbix-agentic-access.yml
   - type: DomainSecurity
