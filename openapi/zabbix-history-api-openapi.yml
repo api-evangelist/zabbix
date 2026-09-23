@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Zabbix Actions History API
+  title: Zabbix History API
   description: The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. The API is shipped as part of the Zabbix web frontend and accessible at /zabbix/api_jsonrpc.php.
   version: '7.0'
   contact:
@@ -58,31 +58,6 @@ paths:
       x-rpc-method: history.get
 components:
   schemas:
-    JsonRpcArrayResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: array
-          items:
-            type: object
-        error:
-          $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
-          type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
     JsonRpcRequest:
       type: object
       required:
@@ -110,6 +85,31 @@ components:
           type: string
           nullable: true
           description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    JsonRpcArrayResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: array
+          items:
+            type: object
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
   securitySchemes:
     ApiToken:
       type: apiKey

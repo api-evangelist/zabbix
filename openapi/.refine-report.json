@@ -1,16 +1,7 @@
 {
   "provider": "zabbix",
   "sources": [
-    "zabbix-actions-api-openapi.yml",
-    "zabbix-authentication-api-openapi.yml",
-    "zabbix-events-api-openapi.yml",
-    "zabbix-history-api-openapi.yml",
-    "zabbix-host-groups-api-openapi.yml",
-    "zabbix-hosts-api-openapi.yml",
-    "zabbix-items-api-openapi.yml",
-    "zabbix-problems-api-openapi.yml",
-    "zabbix-triggers-api-openapi.yml",
-    "zabbix-users-api-openapi.yml"
+    "_original/zabbix-openapi.yml"
   ],
   "outputs": [
     "zabbix-actions-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zabbix-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zabbix-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-host-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-hosts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-problems-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zabbix-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

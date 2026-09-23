@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Zabbix Actions Hosts API
+  title: Zabbix Hosts API
   description: The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. The API is shipped as part of the Zabbix web frontend and accessible at /zabbix/api_jsonrpc.php.
   version: '7.0'
   contact:
@@ -141,19 +141,33 @@ paths:
       x-rpc-method: host.delete
 components:
   schemas:
-    HostListResponse:
+    JsonRpcRequest:
       type: object
+      required:
+      - jsonrpc
+      - method
+      - id
       properties:
         jsonrpc:
           type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
         id:
           type: integer
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Host'
-        error:
-          $ref: '#/components/schemas/JsonRpcError'
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
     HostInterface:
       type: object
       properties:
@@ -176,27 +190,6 @@ components:
           type: string
         port:
           type: string
-    HostGroup:
-      type: object
-      properties:
-        groupid:
-          type: string
-          description: Unique host group identifier
-        name:
-          type: string
-          description: Name of the host group
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
-          type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
     JsonRpcIdsResponse:
       type: object
       properties:
@@ -237,33 +230,40 @@ components:
                 type: string
         error:
           $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcRequest:
+    JsonRpcError:
       type: object
-      required:
-      - jsonrpc
-      - method
-      - id
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    HostListResponse:
+      type: object
       properties:
         jsonrpc:
           type: string
-          enum:
-          - '2.0'
-          description: JSON-RPC protocol version
-        method:
-          type: string
-          description: The API method to call (e.g., host.get, user.login)
-        params:
-          oneOf:
-          - type: object
-          - type: array
-          description: Method parameters
         id:
           type: integer
-          description: Request identifier for correlating responses
-        auth:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Host'
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    HostGroup:
+      type: object
+      properties:
+        groupid:
           type: string
-          nullable: true
-          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+          description: Unique host group identifier
+        name:
+          type: string
+          description: Name of the host group
     Host:
       type: object
       properties:
