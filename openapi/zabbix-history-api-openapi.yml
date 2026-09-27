@@ -58,6 +58,19 @@ paths:
       x-rpc-method: history.get
 components:
   schemas:
+    JsonRpcArrayResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: array
+          items:
+            type: object
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
     JsonRpcRequest:
       type: object
       required:
@@ -97,19 +110,6 @@ components:
         data:
           type: string
           description: Detailed error message
-    JsonRpcArrayResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: array
-          items:
-            type: object
-        error:
-          $ref: '#/components/schemas/JsonRpcError'
   securitySchemes:
     ApiToken:
       type: apiKey

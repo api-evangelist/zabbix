@@ -6,16 +6,22 @@ description: >-
   network devices. The Zabbix API provides JSON-RPC 2.0 access for programmatically managing host configurations,
   collecting monitoring data, and automating operations.
 deliveryModel:
-  model: saas
-  open_source: false
+  model: open-core
+  license: AGPL-3.0
+  license_evidence:
+    repo: zabbix/zabbix
+    spdx: AGPL-3.0
+    stars: 6412
+  open_source: true
   commercial: true
   callable_host: false
-  label: Hosted service · you call their endpoint
+  label: Open core · an OSS project plus a commercial hosted product
   confidence: medium
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -41,7 +47,7 @@ tags:
   - Infrastructure
   - Networks
   - Alerting
-  - Open-Source
+  - Open Source
   - Observability
 tags_raw:
   - Monitoring
@@ -50,6 +56,7 @@ tags_raw:
   - Alerting
   - Open Source
   - Observability
+  - Open-Source
 apis:
 - aid: zabbix:zabbix-actions-api
   name: Zabbix Actions API
