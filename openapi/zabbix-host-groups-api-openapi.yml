@@ -83,33 +83,6 @@ components:
             type: object
         error:
           $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          enum:
-          - '2.0'
-          description: JSON-RPC protocol version
-        method:
-          type: string
-          description: The API method to call (e.g., host.get, user.login)
-        params:
-          oneOf:
-          - type: object
-          - type: array
-          description: Method parameters
-        id:
-          type: integer
-          description: Request identifier for correlating responses
-        auth:
-          type: string
-          nullable: true
-          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
     JsonRpcIdsResponse:
       type: object
       properties:
@@ -162,6 +135,33 @@ components:
         data:
           type: string
           description: Detailed error message
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
+        id:
+          type: integer
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
   securitySchemes:
     ApiToken:
       type: apiKey

@@ -80,6 +80,30 @@ paths:
       x-rpc-method: user.logout
 components:
   schemas:
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    JsonRpcStringResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: string
+          description: Authentication token
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
     JsonRpcBoolResponse:
       type: object
       properties:
@@ -118,30 +142,6 @@ components:
           type: string
           nullable: true
           description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
-    JsonRpcStringResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: string
-          description: Authentication token
-        error:
-          $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
-          type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
   securitySchemes:
     ApiToken:
       type: apiKey
