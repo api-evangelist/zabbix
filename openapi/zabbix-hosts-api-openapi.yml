@@ -141,6 +141,54 @@ paths:
       x-rpc-method: host.delete
 components:
   schemas:
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
+        id:
+          type: integer
+          description: Request identifier for correlating responses
+        auth:
+          type: string
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
+    HostGroup:
+      type: object
+      properties:
+        groupid:
+          type: string
+          description: Unique host group identifier
+        name:
+          type: string
+          description: Name of the host group
     HostListResponse:
       type: object
       properties:
@@ -154,6 +202,28 @@ components:
             $ref: '#/components/schemas/Host'
         error:
           $ref: '#/components/schemas/JsonRpcError'
+    HostInterface:
+      type: object
+      properties:
+        interfaceid:
+          type: string
+        hostid:
+          type: string
+        type:
+          type: integer
+          description: Interface type (1=agent, 2=SNMP, 3=IPMI, 4=JMX)
+        main:
+          type: integer
+          description: Whether this is the default interface (1=yes, 0=no)
+        useip:
+          type: integer
+          description: Whether to use IP (1) or DNS (0)
+        ip:
+          type: string
+        dns:
+          type: string
+        port:
+          type: string
     Host:
       type: object
       properties:
@@ -217,76 +287,6 @@ components:
                 type: string
         error:
           $ref: '#/components/schemas/JsonRpcError'
-    HostInterface:
-      type: object
-      properties:
-        interfaceid:
-          type: string
-        hostid:
-          type: string
-        type:
-          type: integer
-          description: Interface type (1=agent, 2=SNMP, 3=IPMI, 4=JMX)
-        main:
-          type: integer
-          description: Whether this is the default interface (1=yes, 0=no)
-        useip:
-          type: integer
-          description: Whether to use IP (1) or DNS (0)
-        ip:
-          type: string
-        dns:
-          type: string
-        port:
-          type: string
-    HostGroup:
-      type: object
-      properties:
-        groupid:
-          type: string
-          description: Unique host group identifier
-        name:
-          type: string
-          description: Name of the host group
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
-          type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          enum:
-          - '2.0'
-          description: JSON-RPC protocol version
-        method:
-          type: string
-          description: The API method to call (e.g., host.get, user.login)
-        params:
-          oneOf:
-          - type: object
-          - type: array
-          description: Method parameters
-        id:
-          type: integer
-          description: Request identifier for correlating responses
-        auth:
-          type: string
-          nullable: true
-          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
   securitySchemes:
     ApiToken:
       type: apiKey

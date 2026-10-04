@@ -83,6 +83,18 @@ components:
             type: object
         error:
           $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
     JsonRpcIdsResponse:
       type: object
       properties:
@@ -123,18 +135,6 @@ components:
                 type: string
         error:
           $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
-          type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
     JsonRpcRequest:
       type: object
       required:

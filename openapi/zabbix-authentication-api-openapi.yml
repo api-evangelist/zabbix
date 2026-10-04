@@ -80,18 +80,6 @@ paths:
       x-rpc-method: user.logout
 components:
   schemas:
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
-          type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
     JsonRpcStringResponse:
       type: object
       properties:
@@ -115,6 +103,18 @@ components:
           type: boolean
         error:
           $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
     JsonRpcRequest:
       type: object
       required:
