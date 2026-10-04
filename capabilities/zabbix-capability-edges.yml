@@ -1,0 +1,57 @@
+slug: zabbix
+provider: Zabbix
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Actions
+  spec_file: zabbix-actions-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.72
+  evidence: POST /action.create action-create "Create Action"; "enterprise-class open source distributed
+    monitoring solution for networks and applications"
+  reason: Zabbix actions are automated monitoring responses/escalations configured on the monitoring platform,
+    i.e. IT operations monitoring and automation. Not financial or business 'actions'; the vendor is an
+    infrastructure monitoring devtool so Cross-Industry IT Operations is the honest mapping.
+- tag: History
+  spec_file: zabbix-history-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.72
+  evidence: POST /history.get history-get "Get History"; "accessing historical monitoring data"
+  reason: Retrieval of historical monitoring metric values is monitoring data access, squarely IT operations
+    monitoring for this infrastructure monitoring vendor.
+- tag: Events
+  spec_file: zabbix-events-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: POST /event.get event-get "Get Events"; POST /event.acknowledge event-acknowledge "Acknowledge
+    Event"
+  reason: Monitoring events raised by triggers and their acknowledgement are day-to-day IT operations
+    monitoring activities on an infrastructure monitoring platform. Some ambiguity with IT Service Management
+    incident handling keeps confidence below 0.8.
+- tag: Hosts
+  spec_file: zabbix-hosts-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.7
+  evidence: POST /host.create host-create "Create Host"; schemas Host, HostInterface, HostGroup; "programmatically
+    managing host configurations"
+  reason: CRUD over monitored hosts and their interfaces is the core monitoring-configuration surface
+    of an IT monitoring tool, i.e. IT operations monitoring; the alternative reading (IT Infrastructure
+    Management) keeps this below 0.8.

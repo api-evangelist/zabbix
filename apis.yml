@@ -245,6 +245,9 @@ apis:
   - type: ChangeLog
     url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
 common:
+  - type: CapabilityMap
+    url: capabilities/zabbix-capability-edges.yml
+    name: Zabbix Business Capability Map
   - type: Website
     url: https://www.zabbix.com/
   - type: AgenticAccess
