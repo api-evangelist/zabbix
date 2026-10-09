@@ -245,6 +245,12 @@ apis:
   - type: ChangeLog
     url: https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew
 common:
+  - type: Plans
+    url: plans/zabbix-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/zabbix-rate-limits.yml
+  - type: FinOps
+    url: finops/zabbix-finops.yml
   - type: CapabilityMap
     url: capabilities/zabbix-capability-edges.yml
     name: Zabbix Business Capability Map
