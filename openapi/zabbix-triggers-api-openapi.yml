@@ -70,31 +70,33 @@ paths:
       x-rpc-method: trigger.create
 components:
   schemas:
-    JsonRpcArrayResponse:
+    JsonRpcRequest:
       type: object
+      required:
+      - jsonrpc
+      - method
+      - id
       properties:
         jsonrpc:
           type: string
+          enum:
+          - '2.0'
+          description: JSON-RPC protocol version
+        method:
+          type: string
+          description: The API method to call (e.g., host.get, user.login)
+        params:
+          oneOf:
+          - type: object
+          - type: array
+          description: Method parameters
         id:
           type: integer
-        result:
-          type: array
-          items:
-            type: object
-        error:
-          $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcError:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Error code
-        message:
+          description: Request identifier for correlating responses
+        auth:
           type: string
-          description: Short error description
-        data:
-          type: string
-          description: Detailed error message
+          nullable: true
+          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
     JsonRpcIdsResponse:
       type: object
       properties:
@@ -135,33 +137,31 @@ components:
                 type: string
         error:
           $ref: '#/components/schemas/JsonRpcError'
-    JsonRpcRequest:
+    JsonRpcArrayResponse:
       type: object
-      required:
-      - jsonrpc
-      - method
-      - id
       properties:
         jsonrpc:
           type: string
-          enum:
-          - '2.0'
-          description: JSON-RPC protocol version
-        method:
-          type: string
-          description: The API method to call (e.g., host.get, user.login)
-        params:
-          oneOf:
-          - type: object
-          - type: array
-          description: Method parameters
         id:
           type: integer
-          description: Request identifier for correlating responses
-        auth:
+        result:
+          type: array
+          items:
+            type: object
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
           type: string
-          nullable: true
-          description: Authentication token (deprecated in Zabbix 5.4+; use Authorization header)
+          description: Short error description
+        data:
+          type: string
+          description: Detailed error message
   securitySchemes:
     ApiToken:
       type: apiKey
