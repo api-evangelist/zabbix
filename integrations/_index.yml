@@ -15,6 +15,19 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: zabbix-microsoft-teams-own
+  label: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_name: Microsoft Teams (own)
+  category: Microsoft Teams app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200001837
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: zabbix-cncf-cloud-native-landscape
   label: CNCF (Cloud Native Landscape)
   partner: cncf
@@ -22,11 +35,11 @@
   category: Cloud native landscape
   type: register
   channel: standard-directory
-  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  evidence: https://github.com/cncf/landscape/blob/42dd4cd91dad8ec8558ac02467a43f0805b9957a/landscape.yml
   source: edge
   relationship: standard-participant
   contract_reference:
-    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @42dd4cd91d)
     spec_file: null
     standard: Cloud Native (CNCF)
     role: landscape-listed
@@ -46,19 +59,6 @@
     signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
       categories, tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-cloud-native.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: zabbix-microsoft-teams-own
-  label: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_name: Microsoft Teams (own)
-  category: Microsoft Teams app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200001837
-  source: edge
-  relationship: platform-app
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
