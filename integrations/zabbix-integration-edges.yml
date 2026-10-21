@@ -6,6 +6,7 @@ checked:
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+- docker-hub/integrations/docker-hub-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -24,25 +25,6 @@ edges:
   seller_name: Zabbix
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200001837
-  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
-  apps:
-  - Zabbix Webhook
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Microsoft Teams app
-  publisher_verified:
-  - Microsoft 365 Publisher Attestation
 - partner_name: CNCF (Cloud Native Landscape)
   partner: cncf
   partner_match: register
@@ -76,6 +58,58 @@ edges:
     detected: '2026-10-19'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
+- partner_name: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200001837
+  mirror_of: microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+  apps:
+  - Zabbix Webhook
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Microsoft Teams app
+  publisher_verified:
+  - Microsoft 365 Publisher Attestation
+- partner_name: Docker Hub (docker-verified-publisher)
+  partner: docker-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: docker-verified-publisher
+  evidence: https://hub.docker.com/u/zabbix
+  mirror_of: docker-hub/integrations/docker-hub-integration-edges.yml
+  apps:
+  - zabbix/zabbix-agent
+  - zabbix/zabbix-proxy-sqlite3
+  - zabbix/zabbix-server-mysql
+  - zabbix/zabbix-web-nginx-mysql
+  - zabbix/zabbix-server-pgsql
+  - zabbix/zabbix-web-nginx-pgsql
+  - zabbix/zabbix-agent2
+  - zabbix/zabbix-proxy-mysql
+  - zabbix/zabbix-web-apache-mysql
+  - zabbix/zabbix-snmptraps
+  - zabbix/zabbix-java-gateway
+  - zabbix/zabbix-web-apache-pgsql
+  - zabbix/zabbix-web-service
+  - zabbix/zabbix-build-mysql
+  - zabbix/zabbix-build-pgsql
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Docker Verified Publisher
+  badges:
+  - Docker Verified Publisher
 source:
 - https://github.com/cncf/landscape
 - https://github.com/cncf/k8s-conformance
