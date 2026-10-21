@@ -7,6 +7,7 @@ checked:
 - https://github.com/cncf/landscape
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
 - docker-hub/integrations/docker-hub-integration-edges.yml
+- cisco-meraki/integrations/cisco-meraki-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -110,6 +111,23 @@ edges:
   category: Docker Verified Publisher
   badges:
   - Docker Verified Publisher
+- partner_name: Cisco Meraki (own)
+  partner: cisco-meraki
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.cisco.com/en-US/apps/412728
+  mirror_of: cisco-meraki/integrations/cisco-meraki-integration-edges.yml
+  apps:
+  - Zabbix
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: Monitoring & Performance
 source:
 - https://github.com/cncf/landscape
 - https://github.com/cncf/k8s-conformance

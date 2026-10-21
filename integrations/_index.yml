@@ -75,3 +75,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: zabbix-cisco-meraki-own
+  label: Cisco Meraki (own)
+  partner: cisco-meraki
+  partner_name: Cisco Meraki (own)
+  category: Monitoring & Performance
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.cisco.com/en-US/apps/412728
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
