@@ -8,6 +8,11 @@ checked:
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
 - docker-hub/integrations/docker-hub-integration-edges.yml
 - cisco-meraki/integrations/cisco-meraki-integration-edges.yml
+- https://api.first.org/data/v1/teams
+- https://raw.githubusercontent.com/CVEProject/cve-website/dev/src/assets/data/CNAsList.json
+- https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+- https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
+- https://www.raycast.com/api/v1/store_listings
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -128,6 +133,86 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: Monitoring & Performance
+- partner_name: CVE Program (CVE Numbering Authorities)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.cve.org/PartnerInformation/ListofPartners/partner/Zabbix
+  category: Vulnerability disclosure (CVE Numbering Authority)
+  contract_reference:
+    register: CVE Program CNA list (github.com/CVEProject/cve-website CNAsList.json @ 239d3d9b68e0)
+    standard: CVE Program CNA Operational Rules (CVE Numbering Authority)
+    spec_file: null
+    role: cve-numbering-authority
+    registered_name: Zabbix
+    matched_domain: zabbix.com
+    matched_by: domain
+    cna_id: CNA-2020-0022
+    cna_short_name: Zabbix
+    cna_types:
+    - Vendor
+    cna_roles:
+    - CNA
+    scope: Zabbix products and Zabbix projects listed on <a href='https://git.zabbix.com/' target='_blank'>https://git.zabbix.com/</a>
+      only.
+    top_level_root: MITRE Corporation
+    root: n/a
+    security_advisories:
+    - https://support.zabbix.com/projects/ZBX/issues/
+    disclosure_policy:
+    - https://www.zabbix.com/zabbix_security_policy
+    country: Latvia
+    signal_note: listing as a CVE Numbering Authority = participation (a public commitment to assign CVE IDs and
+      publish advisories for its scope); never a count of CVEs
+    detected_by: sweep-vulnerability-disclosure-cna.py
+    detected: '2026-10-22'
+  detected_by: sweep-vulnerability-disclosure-cna.py
+  first_seen: '2026-10-22'
+- partner_name: Raycast
+  partner: raycast
+  partner_match: domain
+  partner_url: https://www.raycast.com
+  partner_domain: raycast.com
+  type: marketplace
+  marketplace: raycast-store
+  channel: connector-listing
+  relationship: connector-coverage
+  evidence: https://www.raycast.com/massimiliano_pasquini/raycast-zabbix
+  app: Zabbix
+  category: Raycast Store extension (community wrapper)
+  listing_count: 1
+  contract_reference:
+    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
+    spec_file: null
+    role: raycast-community-wrapper
+    builder: community
+    authors:
+    - massimiliano_pasquini
+    matched_domain: zabbix.com
+    matched_by: domain
+    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
+    listings:
+    - title: Zabbix
+      store_url: https://www.raycast.com/massimiliano_pasquini/raycast-zabbix
+      installs: 7
+      categories:
+      - Productivity
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/raycast-zabbix/
+      author: massimiliano_pasquini
+    categories:
+    - Productivity
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
+    detected_by: sweep-raycast-store-extensions.py
+    detected: '2026-10-22'
+  detected_by: sweep-raycast-store-extensions.py
+  first_seen: '2026-10-22'
+  direction: partner-built
 source:
 - https://github.com/cncf/landscape
 - https://github.com/cncf/k8s-conformance
