@@ -49,45 +49,6 @@
     detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
-- slug: zabbix-microsoft-teams-own
-  label: Microsoft Teams (own)
-  partner: microsoft-teams
-  partner_name: Microsoft Teams (own)
-  category: Microsoft Teams app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appsource.microsoft.com/en-us/product/office/WA200001837
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: zabbix-docker-hub-docker-verified-publisher
-  label: Docker Hub (docker-verified-publisher)
-  partner: docker-hub
-  partner_name: Docker Hub (docker-verified-publisher)
-  category: Docker Verified Publisher
-  type: marketplace
-  marketplace: docker-verified-publisher
-  channel: partner-built
-  evidence: https://hub.docker.com/u/zabbix
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: zabbix-cisco-meraki-own
-  label: Cisco Meraki (own)
-  partner: cisco-meraki
-  partner_name: Cisco Meraki (own)
-  category: Monitoring & Performance
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.cisco.com/en-US/apps/412728
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: zabbix-cve-program-cve-numbering-authorities
   label: CVE Program (CVE Numbering Authorities)
   partner_name: CVE Program (CVE Numbering Authorities)
@@ -216,5 +177,57 @@
       and package counts are context, never counted'
     detected_by: sweep-red-hat-certified-ecosystem.py
     detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: zabbix-microsoft-teams-own
+  label: Microsoft Teams (own)
+  partner: microsoft-teams
+  partner_name: Microsoft Teams (own)
+  category: Microsoft Teams app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appsource.microsoft.com/en-us/product/office/WA200001837
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zabbix-docker-hub-docker-verified-publisher
+  label: Docker Hub (docker-verified-publisher)
+  partner: docker-hub
+  partner_name: Docker Hub (docker-verified-publisher)
+  category: Docker Verified Publisher
+  type: marketplace
+  marketplace: docker-verified-publisher
+  channel: partner-built
+  evidence: https://hub.docker.com/u/zabbix
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zabbix-cisco-meraki-own
+  label: Cisco Meraki (own)
+  partner: cisco-meraki
+  partner_name: Cisco Meraki (own)
+  category: Monitoring & Performance
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.cisco.com/en-US/apps/412728
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: zabbix-ansible-ansible-galaxy
+  label: Ansible (ansible-galaxy)
+  partner: ansible
+  partner_name: Ansible (ansible-galaxy)
+  category: configuration-management content listing (Ansible collection)
+  type: marketplace
+  marketplace: ansible-galaxy
+  channel: partner-built
+  evidence: https://galaxy.ansible.com/ui/repo/published/zabbix/zabbix/
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
