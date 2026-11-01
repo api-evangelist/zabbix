@@ -1,4 +1,4 @@
-# Zabbix (zabbix)
+# Zabbix
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,148 @@
 
 Zabbix is an enterprise-class open source distributed monitoring solution for networks and applications. Zabbix enables real-time monitoring of millions of metrics collected from tens of thousands of servers, virtual machines, and network devices. The Zabbix API provides JSON-RPC 2.0 access for programmatically managing host configurations, collecting monitoring data, and automating operations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/apis.yml)
+**Areas:** Monitoring · Infrastructure · Networks · Alerting · Open Source · Observability
 
-## Tags
+## Zabbix on APIs.io
 
-- Monitoring
-- Infrastructure
-- Networks
-- Alerting
-- Open Source
-- Observability
+Everything profiled for Zabbix is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zabbix/](https://apis.io/providers/zabbix/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (10)
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+- [Zabbix Actions API](https://apis.io/apis/zabbix/zabbix-actions-api/) — Action configuration for alerting and automation
+- [Zabbix Authentication API](https://apis.io/apis/zabbix/zabbix-authentication-api/) — User login and session management
+- [Zabbix Events API](https://apis.io/apis/zabbix/zabbix-events-api/) — Event retrieval and acknowledgement
+- [Zabbix History API](https://apis.io/apis/zabbix/zabbix-history-api/) — Historical monitoring data
+- [Zabbix Host Groups API](https://apis.io/apis/zabbix/zabbix-host-groups-api/) — Host group management
+- [Zabbix Hosts API](https://apis.io/apis/zabbix/zabbix-hosts-api/) — Host configuration and management
+- [Zabbix Items API](https://apis.io/apis/zabbix/zabbix-items-api/) — Monitoring item configuration
+- [Zabbix Problems API](https://apis.io/apis/zabbix/zabbix-problems-api/) — Active problem retrieval
+- [Zabbix Triggers API](https://apis.io/apis/zabbix/zabbix-triggers-api/) — Trigger configuration and management
+- [Zabbix Users API](https://apis.io/apis/zabbix/zabbix-users-api/) — User account management
 
-## APIs
+### Published properties
 
-### Zabbix API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Zabbix API is a JSON-RPC 2.0 HTTP API for programmatically retrieving and modifying the configuration of Zabbix and accessing historical monitoring data. Supports host management, item configuration, trigger management, event handling, alerting, user management, and historical data retrieval.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.zabbix.com/documentation/current/en/manual/api](https://www.zabbix.com/documentation/current/en/manual/api)
-- **Base URL:** `https://{host}/zabbix/api_jsonrpc.php`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Zabbix Agentic Access](https://apis.io/agentic-access/zabbix/zabbix-agentic-access/)
 
-- Monitoring
-- Infrastructure
-- JSON-RPC
-- Alerting
-- Networks
+#### Examples (3)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://www.zabbix.com/documentation/current/en/manual/api)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/zabbix/refs/heads/main/openapi/zabbix-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Getting Started](https://www.zabbix.com/documentation/current/en/manual/quickstart)
-- [Authentication](https://www.zabbix.com/documentation/current/en/manual/api/reference/user/login)
-- [Changelog](https://www.zabbix.com/documentation/current/en/manual/introduction/whatsnew)
-- [Postman Collection](collections/zabbix.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zabbix.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Zabbix History Get Example](https://apis.io/examples/zabbix/zabbix-history-get-example/)
+- [Zabbix Host Get Example](https://apis.io/examples/zabbix/zabbix-host-get-example/)
+- [Zabbix Problem Get Example](https://apis.io/examples/zabbix/zabbix-problem-get-example/)
 
-## Common Properties
+#### Collections (11)
 
-- [Portal](https://www.zabbix.com)
+Postman and Open Collection request collections.
+
+- [Zabbix API](https://apis.io/collections/zabbix/open-zabbix/)
+- [Zabbix Actions API](https://apis.io/collections/zabbix/open-zabbix-actions-api/)
+- [Zabbix Actions Authentication API](https://apis.io/collections/zabbix/open-zabbix-authentication-api/)
+- [Zabbix Actions Events API](https://apis.io/collections/zabbix/open-zabbix-events-api/)
+- [Zabbix Actions History API](https://apis.io/collections/zabbix/open-zabbix-history-api/)
+- [Zabbix Actions Host Groups API](https://apis.io/collections/zabbix/open-zabbix-host-groups-api/)
+- [Zabbix Actions Hosts API](https://apis.io/collections/zabbix/open-zabbix-hosts-api/)
+- [Zabbix Actions Items API](https://apis.io/collections/zabbix/open-zabbix-items-api/)
+- [Zabbix Actions Problems API](https://apis.io/collections/zabbix/open-zabbix-problems-api/)
+- [Zabbix Actions Triggers API](https://apis.io/collections/zabbix/open-zabbix-triggers-api/)
+- [Zabbix Actions Users API](https://apis.io/collections/zabbix/open-zabbix-users-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Zabbix API Rules](https://apis.io/rules/zabbix/zabbix-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Zabbix Authentication](https://apis.io/security/zabbix/zabbix-authentication/)
+- [Zabbix Domain Security](https://apis.io/security/zabbix/zabbix-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Zabbix Plans Pricing](https://apis.io/plans/zabbix/zabbix-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Zabbix Rate Limits](https://apis.io/rate-limits/zabbix/zabbix-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Zabbix Finops](https://apis.io/finops/zabbix/zabbix-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.zabbix.com/)
 - [Blog](https://blog.zabbix.com)
-- [Git Hub](https://github.com/zabbix/zabbix)
-- [Git Hub Org](https://github.com/zabbix)
-- [Docker](https://github.com/zabbix/zabbix-docker)
-- [Ansible Collection](https://github.com/zabbix/ansible-collection)
-- [Community Templates](https://github.com/zabbix/community-templates)
-- [Twitter](https://twitter.com/zabbix)
-- [Privacy Policy](https://www.zabbix.com/privacy_policy)
-- [Terms of Service](https://www.zabbix.com/terms_of_use)
-- [Download](https://www.zabbix.com/download)
-- [Integrations](undefined)
-- [Features](undefined)
-- [Integrations](https://www.zabbix.com/integrations)
+- [Terms of service](https://www.zabbix.com/terms_of_use)
+- [Privacy policy](https://www.zabbix.com/privacy_policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 46.7 |
+| Contract governance | 7.6 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 45.2 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/zabbix/](https://apis.io/providers/zabbix/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zabbix: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zabbix/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
